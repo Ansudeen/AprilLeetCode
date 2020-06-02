@@ -1,0 +1,60 @@
+class Solution {
+public:
+    bool backspaceCompare(string S, string T) {
+        
+        stack<char> s1;
+        stack<char> s2;
+        
+        int n1=S.length();
+        int n2=T.length();
+        
+        if(S[0]!='#')
+        s1.push(S[0]);
+        for(int i=1;i<n1;i++){
+            if(S[i]=='#' && s1.empty()==false)
+                s1.pop();
+            else if (S[i] != '#')
+                s1.push(S[i]);
+        }
+        
+        if(T[0]!='#')
+        s2.push(T[0]);
+        for(int i=1;i<n2;i++){
+            if(T[i]=='#' && s2.empty()==false)
+                s2.pop();
+            else if (T[i] != '#')
+                s2.push(T[i]);
+        }
+        
+        if(s1.size()==0 && s2.size()==0)
+            return true;
+        
+        cout<<s1.size()<<endl;
+        
+        if(s1.size()==s2.size())
+        {
+            string t1;
+            string t2;
+            while(s1.empty()==false){
+                t1+=s1.top();
+                s1.pop();
+            }
+            
+            while(s2.empty()==false){
+                t2+=s2.top();
+                s2.pop();
+            }
+            
+            if(t1==t2)
+                  return true;
+            else
+                return false;
+        }
+        else
+        {
+            return false;
+        }
+        
+        
+    }
+};
